@@ -1,0 +1,27 @@
+{
+  "logo": {
+    "type": "raw",
+    "source": "/home/oniczz/.config/fastfetch/logo.ansi",
+    "width": 40,
+    "height": 20,
+    "padding": { "right": 3, "top": 0 }
+  },
+  "display": {
+    "color": { "keys": "38;2;217;119;87", "title": "38;2;240;162;127", "separator": "38;2;154;140;126" },
+    "separator": "  "
+  },
+  "modules": [
+    { "type": "title", "color": { "user": "38;2;240;162;127", "at": "38;2;154;140;126", "host": "38;2;217;119;87" } },
+    { "type": "separator", "string": "─" },
+    { "type": "os",       "key": "\uf303  OS       " },
+    { "type": "kernel",   "key": "\uf17c  Kernel   " },
+    { "type": "uptime",   "key": "\uf017  Uptime   " },
+    { "type": "wm",       "key": "\uf108  WM       ", "format": "{1}" },
+    { "type": "terminal", "key": "\uf120  Terminal " },
+    { "type": "cpu",      "key": "\uf2db  CPU      ", "format": "{name} ({cores-logical})" },
+    { "type": "gpu",      "key": "\uf26c  GPU      ", "format": "{name}" },
+    { "type": "memory",   "key": "\uf1c0  Memory   ", "format": "{used} / {total}" },
+    { "type": "swap",     "key": "\uf0ec  Swap     ", "format": "{used} / {total}" },
+    { "type": "disk",     "key": "\uf0a0  Disk     ", "format": "{size-used} / {size-total}" }
+  ]
+}

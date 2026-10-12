@@ -1,0 +1,171 @@
+input {
+    keyboard {
+        xkb {
+            layout "us,ru"
+            options "grp:alt_shift_toggle"
+        }
+    }
+    touchpad {
+        tap
+        natural-scroll
+    }
+}
+
+output "eDP-1" {
+    position x=0 y=0
+}
+
+output "HDMI-A-1" {
+    position x=1366 y=0
+    mode "1920x1080@100"
+}
+
+cursor {
+    xcursor-theme "Bibata-Modern-Amber"
+    xcursor-size 24
+}
+
+layout {
+    gaps 12
+    center-focused-column "never"
+    default-column-width { proportion 0.5; }
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+    focus-ring { off; }
+    border {
+        width 2
+        active-gradient from="#f0a27f" to="#d97757" angle=45
+        inactive-color "#3a322c"
+        urgent-color "#e8c9a0"
+    }
+    shadow {
+        on
+        softness 40
+        spread 6
+        offset x=0 y=8
+        color "#00000080"
+    }
+    insert-hint {
+        color "#d9775780"
+    }
+}
+
+blur {
+    passes 3
+    offset 3.0
+    noise 0.025
+    saturation 1.4
+}
+
+window-rule {
+    geometry-corner-radius 24
+    clip-to-geometry true
+    draw-border-with-background false
+    background-effect {
+        blur true
+    }
+}
+
+window-rule {
+    match app-id="dev.noctalia.Noctalia.Settings"
+    open-floating true
+    default-column-width { fixed 1080; }
+    default-window-height { fixed 920; }
+}
+
+window-rule {
+    match title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// размытый фон в обзоре (Noctalia рисует свой backdrop)
+layer-rule {
+    match namespace="^noctalia-backdrop"
+    place-within-backdrop true
+}
+
+overview {
+    zoom 0.55
+    backdrop-color "#14110f"
+    workspace-shadow {
+        softness 50
+        spread 12
+        offset x=0 y=12
+        color "#00000080"
+    }
+}
+
+animations {
+    workspace-switch { spring damping-ratio=0.78 stiffness=900 epsilon=0.0001; }
+    horizontal-view-movement { spring damping-ratio=0.85 stiffness=800 epsilon=0.0001; }
+    window-movement { spring damping-ratio=0.72 stiffness=600 epsilon=0.0001; }
+    window-resize { spring damping-ratio=0.85 stiffness=800 epsilon=0.0001; }
+    overview-open-close { spring damping-ratio=0.85 stiffness=800 epsilon=0.0001; }
+    window-open { duration-ms 400; curve "cubic-bezier" 0.05 0.7 0.1 1.0; }
+    window-close { duration-ms 200; curve "cubic-bezier" 0.3 0.0 0.8 0.15; }
+}
+
+prefer-no-csd
+screenshot-path "~/Pictures/Screenshots/%Y-%m-%d_%H-%M-%S.png"
+hotkey-overlay { skip-at-startup; }
+
+debug {
+    honor-xdg-activation-with-invalid-serial
+}
+
+spawn-at-startup "noctalia"
+
+binds {
+    Mod+Return { spawn "kitty"; }
+    Mod+Q { close-window; }
+    Mod+Shift+E { quit; }
+    Mod+Shift+Slash { show-hotkey-overlay; }
+
+    Mod+Space { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+S { spawn-sh "noctalia msg panel-toggle control-center"; }
+    Mod+Comma { spawn-sh "noctalia msg settings-toggle"; }
+    Mod+Tab { toggle-overview; }
+
+    XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
+    XF86AudioLowerVolume { spawn-sh "noctalia msg volume-down"; }
+    XF86AudioMute { spawn-sh "noctalia msg volume-mute"; }
+    XF86MonBrightnessUp { spawn-sh "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown { spawn-sh "noctalia msg brightness-down"; }
+
+    Mod+Left  { focus-column-left; }
+    Mod+Right { focus-column-right; }
+    Mod+Up    { focus-window-up; }
+    Mod+Down  { focus-window-down; }
+    Mod+Shift+Left  { move-column-left; }
+    Mod+Shift+Right { move-column-right; }
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+
+    Mod+R { switch-preset-column-width; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+C { center-column; }
+    Mod+V { toggle-window-floating; }
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+
+    Mod+Page_Down { focus-workspace-down; }
+    Mod+Page_Up   { focus-workspace-up; }
+    Mod+WheelScrollDown { focus-workspace-down; }
+    Mod+WheelScrollUp   { focus-workspace-up; }
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+}

@@ -1,0 +1,15 @@
+[general]
+framerate = 60
+
+[input]
+method = pipewire
+source = auto
+
+[output]
+method = ncurses
+
+[color]
+gradient = 1
+gradient_color_1 = '#8a4a34'
+gradient_color_2 = '#d97757'
+gradient_color_3 = '#f0c9a8'

@@ -1,0 +1,28 @@
+[shell.panel]
+background_blur = true
+attach_launcher = true
+attach_control_center = true
+attach_clipboard = true
+attach_wallpaper = true
+
+[bar]
+order = ["main"]
+
+[bar.main]
+position = "left"
+thickness = 54
+margin_edge = 0
+margin_ends = 0
+padding = 14
+widget_spacing = 10
+radius = 0
+background_opacity = 1.0
+attach_panels = true
+shadow = true
+hover_highlight = true
+font_weight = 600
+capsule = false
+
+start = ["launcher", "workspaces", "media"]
+center = ["clock"]
+end = ["tray", "network", "bluetooth", "volume", "battery", "control-center"]
